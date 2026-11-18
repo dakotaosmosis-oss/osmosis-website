@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osmosis Water Treatment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE plain-spoken Minnesota trade business; confident, specific, no hype
+   IDEA a geologist's cross-section: house above, aquifer layers below, water rising through treatment
+   PICTURE full-bleed hero scene: sky, house with basement cutaway (softener, brine tank, filter), well pipe down to the Jordan sandstone
+   COLOUR white ground, lake blue #0E4C73 dominant bands, aquifer sand/limestone tones in drawings, buoy red #CF3B22 for every booking action
+   TYPE Archivo 800 display + Inter text
+   LAYOUT laptop: headline in the sky's quiet top-left, scene fills the band; phone: headline, then the scene, then prices */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#08202f);--ink:light-dark(#0c1f2c,#e6eef3);--muted:light-dark(#4a5d6a,#a9bbc7);
+--lake:light-dark(#0e4c73,#7cc4ea);--band:light-dark(#0e4c73,#0b3550);--panel:light-dark(#f1f6f9,#0d2b3e);
+--line:light-dark(#d3dee6,#1f3e52);--buoy:light-dark(#cf3b22,#ff6a4f);--buoyink:light-dark(#ffffff,#1a0a06);
+--sky1:light-dark(#7cc7ec,#0a2740);--sky2:light-dark(#d8f0fb,#1c4a6c);--sun:light-dark(#ffd76a,#e8eef2);
+--soil:#5b4330;--till:#9a7b56;--lime:#c9bfa8;--sand:#e2c98f;--cut:#22313b}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:76px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Archivo,Inter,system-ui,sans-serif;line-height:1.05;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(36px,5vw,56px);font-weight:800}
+h2{font-size:clamp(30px,3.6vw,44px);font-weight:800}
+h3{font-size:22px;font-weight:600}
+p{margin:0}
+a{color:var(--lake)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(48px,6vw,88px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.lede{font-size:17px;color:var(--muted);max-width:62ch;margin-top:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font:600 16px/1 Inter,system-ui,sans-serif;text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--buoy);color:var(--buoyink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--lake);outline-offset:3px}
+.nw{white-space:nowrap}
+.sample{font-size:13px;color:var(--muted);margin-top:18px}
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;height:68px;padding-inline:max(5vw,16px);max-width:1340px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-right:auto}
+.logo b{font:800 22px/1 Archivo,sans-serif;letter-spacing:-.02em}
+.logo small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+nav{display:flex;gap:22px}
+nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+nav a:hover{color:var(--lake)}
+.tel{font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.menu{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font-size:20px;cursor:pointer}
+@media(max-width:980px){nav,.bar .tel{display:none}.menu{display:inline-flex;align-items:center;justify-content:center}
+header.open nav{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px max(5vw,16px) 16px}
+header.open nav a{padding:12px 0;border-bottom:1px solid var(--line)}}
+@media(max-width:520px){.bar .btn{padding:0 14px;font-size:15px}.logo small{display:none}}
+/* hero */
+.hero{position:relative;background:var(--sky1);color:#06202f;overflow:hidden}
+.hero svg{display:block;width:100%}
+.hero .copy{position:relative;z-index:1;padding:clamp(28px,5vw,64px) max(5vw,16px) 24px;max-width:640px}
+.hero .copy p{font-size:18px;margin-top:16px;color:#123447;max-width:52ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero .ghost{color:#06202f}
+:root[data-theme=dark] .hero,:root[data-theme=dark] .hero .ghost{color:#eef6fb}
+:root[data-theme=dark] .hero .copy p{color:#cfe2ee}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .hero,:root:not([data-theme=light]) .hero .ghost{color:#eef6fb}:root:not([data-theme=light]) .hero .copy p{color:#cfe2ee}}
+.hero{display:flex;flex-direction:column}
+.hero .copy{order:-1}
+@media(min-width:900px){.hero{display:block;min-height:720px}.hero svg{position:absolute;inset:0;height:100%}}
+@media(max-width:899px){.hero svg{height:clamp(240px,62vw,440px)}.scene text{display:none}}
+.scene text{font:600 15px Inter,sans-serif;paint-order:stroke;stroke:rgba(20,16,10,.55);stroke-width:4px;fill:#fbf6ea}
+.drop{animation:rise 3.6s linear infinite;transform-box:fill-box}
+@keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:1}85%{opacity:1}100%{transform:translateY(-200px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.drop{animation:none;opacity:0}html{scroll-behavior:auto}}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;background:var(--band);color:#eaf4fa;padding:16px max(5vw,16px);font-weight:600;font-size:15px;justify-content:center}
+.facts span{display:flex;align-items:center;gap:8px}
+.facts svg{flex:none}
+/* services */
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.tier{display:flex;flex-direction:column;background:var(--panel);border-radius:18px;padding:26px}
+.tier.feat{background:var(--band);color:#eef6fb}
+.tier.feat .muted,.tier.feat li{color:#cfe2ee}
+.tier .art{height:120px;margin:-6px 0 16px}
+.tier .art svg{height:100%;width:auto}
+.tier .kind{font-size:14px;font-weight:600;color:var(--lake)}
+.tier.feat .kind{color:#9fd5f2}
+.price{font:800 clamp(28px,3vw,36px)/1.1 Archivo,sans-serif;letter-spacing:-.02em;margin:14px 0 4px;white-space:nowrap}
+.muted{color:var(--muted);font-size:15px}
+.tier ul{margin:18px 0 22px;padding-left:20px;display:grid;gap:6px}
+.tier .btn{margin-top:auto}
+.tier.feat .btn.ghost{color:#eef6fb}
+@media(max-width:900px){.tiers{grid-template-columns:minmax(0,1fr)}.tier{display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:20px}.tier .art{grid-row:span 6;height:auto;margin:0}.tier .art svg{width:100%;height:auto}}
+@media(max-width:560px){.tier{display:flex}.tier .art{height:100px}.tier .art svg{width:auto;height:100%}}
+/* how it works */
+.how{background:var(--band);color:#eef6fb}
+.how .lede{color:#cfe2ee}
+.steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px;list-style:none;padding:0}
+.steps::before{content:"";position:absolute;top:58px;left:16%;right:16%;height:10px;border-radius:5px;background:#5fa9d3;opacity:.55}
+.steps li{position:relative;text-align:center}
+.steps .ico{width:116px;height:116px;margin:0 auto 18px;border-radius:50%;background:#f4efe3;display:grid;place-items:center;box-shadow:0 0 0 8px #0e4c73}
+:root[data-theme=dark] .steps .ico{box-shadow:0 0 0 8px #0b3550}
+.steps h3{color:#fff}
+.steps p{color:#cfe2ee;margin-top:8px;max-width:34ch;margin-inline:auto}
+.steps .when{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:#9fd5f2}
+@media(max-width:760px){.steps{grid-template-columns:minmax(0,1fr);gap:22px}.steps::before{top:40px;bottom:40px;left:57px;right:auto;width:10px;height:auto}.steps li{display:grid;grid-template-columns:116px minmax(0,1fr);gap:18px;text-align:left;align-items:center}.steps .ico{margin:0}.steps p{margin-inline:0}}
+/* proof */
+.proof-top{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px;align-items:center}
+.seal{width:240px;height:240px}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:36px}
+.trust div{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:start;padding:20px;border:1px solid var(--line);border-radius:14px}
+.trust b{display:block;font-size:17px}
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.review{background:var(--panel);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.review .top{display:flex;justify-content:space-between;align-items:center}
+.stars{color:#e0a100;letter-spacing:2px;font-size:18px}
+.tag{font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--line);color:var(--muted)}
+.review cite{font-style:normal;font-size:14px;color:var(--muted);margin-top:auto}
+@media(max-width:900px){.proof-top{grid-template-columns:minmax(0,1fr)}.seal{width:180px;height:180px}.trust,.reviews{grid-template-columns:minmax(0,1fr)}}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:start}
+.about .story p+p{margin-top:14px}
+.about .story p{font-size:17px;max-width:62ch}
+.side{background:var(--panel);border-radius:18px;padding:26px}
+.stat{padding:14px 0;border-bottom:1px solid var(--line)}
+.stat b{display:block;font:800 30px/1.1 Archivo,sans-serif;letter-spacing:-.02em;color:var(--lake)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{padding:6px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:14px}
+@media(max-width:900px){.about{grid-template-columns:minmax(0,1fr)}}
+/* booking */
+.book{background:var(--panel)}
+.bookgrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.contact dl{margin:24px 0 0;display:grid;gap:16px}
+.contact dt{font-size:14px;color:var(--muted)}
+.contact dd{margin:2px 0 0;font-weight:600;font-size:17px}
+form{background:var(--bg);border-radius:18px;padding:clamp(20px,3vw,32px);display:grid;gap:16px;border:1px solid var(--line)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+label i{color:var(--buoy);font-style:normal}
+input,select,textarea{width:100%;font:16px Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--buoy)}
+.err{color:var(--buoy);font-size:14px;margin-top:4px;min-height:0}
+fieldset{border:0;padding:0;margin:0}
+.radios{display:flex;flex-wrap:wrap;gap:10px}
+.radios label{display:flex;align-items:center;gap:8px;margin:0;font-weight:400;border:1.5px solid var(--line);border-radius:10px;padding:0 14px;min-height:44px;cursor:pointer}
+.radios input{width:18px;height:18px;min-height:0;accent-color:var(--buoy)}
+form .btn{width:100%;min-height:54px;font-size:17px}
+.note{font-size:13px;color:var(--muted)}
+.done{display:none;background:var(--bg);border-radius:18px;padding:32px;border:2px solid var(--lake)}
+.done.show{display:block}
+.done dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;margin:18px 0}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+@media(max-width:900px){.bookgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.row{grid-template-columns:minmax(0,1fr)}}
+footer{background:#071b28;color:#c7d6df;padding:40px max(5vw,16px) 32px;font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between}
+footer b{color:#fff}
+footer a{color:#c7d6df}
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="bar">
+    <a class="logo" href="#top" aria-label="Osmosis home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#0e4c73"/><path d="M17 6c4 5.5 7 9 7 13a7 7 0 0 1-14 0c0-4 3-7.5 7-13z" fill="#bfe6f8"/><path d="M13 20a4 4 0 0 0 4 4" stroke="#0e4c73" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <span><b>Osmosis</b><small>Water treatment · Burnsville, MN</small></span>
+    </a>
+    <nav id="nav" aria-label="Main">
+      <a href="#services">Services &amp; prices</a><a href="#how">How it works</a><a href="#proof">Reviews</a><a href="#about">About</a>
+    </nav>
+    <a class="tel" href="tel:+16125629419">(612) 562-9419</a>
+    <a class="btn primary" href="#book">Book free test</a>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="nav" aria-label="Open menu">&#9776;</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <svg class="scene" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Cross-section of a house drawing well water up from the Jordan sandstone aquifer through a softener and filter in the basement">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient>
+      <pattern id="brick" width="60" height="22" patternUnits="userSpaceOnUse"><rect width="60" height="22" fill="#c9bfa8"/><path d="M0 21.5h60M30 0v11M0 11h60M10 11v11M50 11v11" stroke="#a99d84" stroke-width="1.5"/></pattern>
+      <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#e2c98f"/><circle cx="3" cy="4" r="1.4" fill="#c4a467"/><circle cx="10" cy="10" r="1.2" fill="#c9ab70"/></pattern>
+      <pattern id="till" width="40" height="30" patternUnits="userSpaceOnUse"><rect width="40" height="30" fill="#9a7b56"/><ellipse cx="9" cy="8" rx="5" ry="3.4" fill="#86694a"/><ellipse cx="29" cy="21" rx="4" ry="2.6" fill="#ab8c66"/></pattern>
+    </defs>
+    <rect width="1440" height="440" fill="url(#sky)"/>
+    <circle cx="1310" cy="96" r="44" fill="var(--sun)"/>
+    <path d="M0 410 C180 370 320 392 470 380 C640 366 760 398 900 388 C1080 374 1240 396 1440 384 V440 H0Z" fill="#6fa58a" opacity=".55"/>
+    <path d="M0 425 C220 404 420 420 640 412 C860 404 1100 424 1440 410 V440 H0Z" fill="#4f8a62"/>
+    <g id="tree"><path d="M0 -96 L26 -30 H12 L32 0 H-32 L-12 -30 H-26Z" fill="#2f6b45"/><path d="M0 -96 L26 -30 H12 L32 0 H0Z" fill="#245638"/><rect x="-4" y="0" width="8" height="12" fill="#5b4330"/></g>
+    <use href="#tree" x="770" y="420"/><use href="#tree" x="820" y="428" transform="translate(820 428) scale(.8) translate(-820 -428)"/><use href="#tree" x="1240" y="424" transform="translate(1240 424) scale(.9) translate(-1240 -424)"/>
+    <!-- house -->
+    <path d="M905 440 H1175 L1165 452 H915Z" fill="#000" opacity=".12"/>
+    <rect x="920" y="300" width="240" height="140" fill="#f4efe3"/>
+    <rect x="1080" y="300" width="80" height="140" fill="#e1d9c6"/>
+    <path d="M900 306 L1040 214 L1180 306Z" fill="#33424d"/>
+    <path d="M1040 214 L1180 306 H1100Z" fill="#26323b"/>
+    <rect x="1110" y="230" width="22" height="46" fill="#6c4b3a"/>
+    <rect x="950" y="336" width="54" height="44" rx="3" fill="#7cc7ec" stroke="#33424d" stroke-width="5"/>
+    <rect x="1018" y="350" width="40" height="90" rx="3" fill="#cf3b22"/>
+    <circle cx="1050" cy="398" r="3" fill="#f4efe3"/>
+    <rect x="1094" y="336" width="48" height="44" rx="3" fill="#7cc7ec" stroke="#33424d" stroke-width="5"/>
+    <!-- ground layers -->
+    <rect y="440" width="1440" height="30" fill="var(--soil)"/>
+    <rect y="470" width="1440" height="80" fill="url(#till)"/>
+    <rect y="550" width="1440" height="85" fill="url(#brick)"/>
+    <rect y="635" width="1440" height="85" fill="url(#dots)"/>
+    <path d="M0 550 H1440 M0 635 H1440" stroke="#3b2c20" stroke-opacity=".35" stroke-width="2"/>
+    <!-- basement cutaway -->
+    <rect x="922" y="440" width="236" height="104" fill="var(--cut)"/>
+    <rect x="922" y="440" width="236" height="8" fill="#3d4d58"/>
+    <rect x="958" y="458" width="34" height="78" rx="15" fill="#0e4c73"/><rect x="958" y="458" width="10" height="78" rx="5" fill="#2a77a6"/><rect x="964" y="450" width="22" height="12" rx="3" fill="#cfd8de"/>
+    <rect x="1004" y="488" width="44" height="48" rx="6" fill="#dfe6ea"/><rect x="1004" y="488" width="44" height="10" rx="5" fill="#bcc8cf"/>
+    <rect x="1070" y="470" width="20" height="52" rx="6" fill="#bfe6f8"/><rect x="1066" y="464" width="28" height="10" rx="3" fill="#cfd8de"/>
+    <path d="M880 506 H958 M992 470 H1066 M1094 470 H1130 V300" stroke="#9fb3bf" stroke-width="6" fill="none" stroke-linejoin="round"/>
+    <!-- well -->
+    <rect x="874" y="500" width="12" height="214" fill="#6d7f8a"/>
+    <rect x="877" y="500" width="6" height="214" fill="#9fb3bf"/>
+    <circle class="drop" cx="880" cy="706" r="5" fill="#5ec2f2" style="animation-delay:0s"/>
+    <circle class="drop" cx="880" cy="706" r="5" fill="#5ec2f2" style="animation-delay:1.2s"/>
+    <circle class="drop" cx="880" cy="706" r="5" fill="#5ec2f2" style="animation-delay:2.4s"/>
+    <text x="300" y="516">Glacial till</text>
+    <text x="300" y="598">Prairie du Chien limestone</text>
+    <text x="300" y="684">Jordan sandstone aquifer</text>
+    <text x="1170" y="500">Softener, brine tank</text>
+    <text x="1170" y="522">and drinking-water filter</text>
+  </svg>
+  <div class="copy">
+    <h1 id="h1">Know what's in your water, and what fixing it costs</h1>
+    <p>Free in-home water test, prices posted up front, and installs by technicians based in Burnsville. City water or private well, and we service every brand.</p>
+    <div class="ctas"><a class="btn primary" href="#book">Book a free water test</a><a class="btn ghost" href="#services">See our prices</a></div>
+  </div>
+</section>
+
+<div class="facts" role="list">
+  <span role="listitem"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9l4 4 8-9" stroke="#9fd5f2" stroke-width="2.5" fill="none"/></svg>Prices posted, no in-home sales pitch</span>
+  <span role="listitem"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9l4 4 8-9" stroke="#9fd5f2" stroke-width="2.5" fill="none"/></svg>Private-well testing for nitrate and PFAS</span>
+  <span role="listitem"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9l4 4 8-9" stroke="#9fd5f2" stroke-width="2.5" fill="none"/></svg>Serving Dakota and Scott counties</span>
+</div>
+
+<section class="band" id="services" aria-labelledby="sv">
+  <div class="wrap">
+    <h2 id="sv">Three systems, priced before we ever ring your doorbell</h2>
+    <p class="lede">Installed prices, before tax. Your free test tells us which size you need, and your written quote lands inside these ranges.</p>
+    <div class="tiers">
+      <article class="tier">
+        <div class="art"><svg viewBox="0 0 140 120" aria-hidden="true"><rect x="10" y="104" width="120" height="8" rx="4" fill="var(--line)"/><rect x="22" y="40" width="22" height="64" rx="8" fill="#bfe6f8"/><rect x="50" y="40" width="22" height="64" rx="8" fill="#9fd5f2"/><rect x="78" y="40" width="22" height="64" rx="8" fill="#7cc4ea"/><rect x="16" y="28" width="92" height="14" rx="4" fill="#0e4c73"/><rect x="108" y="54" width="22" height="50" rx="10" fill="#dfe6ea"/><path d="M60 28 V10 H96 V16" stroke="#9fb3bf" stroke-width="5" fill="none"/></svg></div>
+        <span class="kind">Basic</span>
+        <h3>Under-sink reverse osmosis</h3>
+        <p class="price">$450–$900</p>
+        <p class="muted">Best for clean, great-tasting drinking water at one tap.</p>
+        <ul><li>4- or 5-stage RO with its own faucet</li><li>Cuts lead, nitrate, PFAS and chlorine taste</li><li>First-year filter change included</li></ul>
+        <a class="btn ghost" href="#book" data-svc="ro">Book a test for RO</a>
+      </article>
+      <article class="tier feat">
+        <div class="art"><svg viewBox="0 0 140 120" aria-hidden="true"><rect x="10" y="104" width="120" height="8" rx="4" fill="#2a6a93"/><rect x="26" y="22" width="34" height="82" rx="14" fill="#bfe6f8"/><rect x="26" y="22" width="10" height="82" rx="5" fill="#e8f6fd"/><rect x="78" y="22" width="34" height="82" rx="14" fill="#7cc4ea"/><rect x="78" y="22" width="10" height="82" rx="5" fill="#a9daf3"/><path d="M4 16 H130" stroke="#cfd8de" stroke-width="6"/><rect x="34" y="12" width="18" height="12" rx="3" fill="#cfd8de"/><rect x="86" y="12" width="18" height="12" rx="3" fill="#cfd8de"/></svg></div>
+        <span class="kind">Standard</span>
+        <h3>Whole-home filtration</h3>
+        <p class="price">$1,400–$2,800</p>
+        <p class="muted">Best for city-water homes bothered by chlorine taste and odor at every tap and shower.</p>
+        <ul><li>Sediment plus carbon tanks at the main line</li><li>No filters to swap for years</li><li>Pairs with an RO faucet for drinking water</li></ul>
+        <a class="btn primary" href="#book" data-svc="whole">Book a test for whole-home</a>
+      </article>
+      <article class="tier">
+        <div class="art"><svg viewBox="0 0 140 120" aria-hidden="true"><rect x="6" y="104" width="128" height="8" rx="4" fill="var(--line)"/><rect x="14" y="30" width="26" height="74" rx="12" fill="#bfe6f8"/><rect x="46" y="18" width="30" height="86" rx="13" fill="#0e4c73"/><rect x="46" y="18" width="10" height="86" rx="5" fill="#2a77a6"/><rect x="82" y="54" width="44" height="50" rx="7" fill="#dfe6ea"/><rect x="82" y="54" width="44" height="10" rx="5" fill="#bcc8cf"/><rect x="52" y="8" width="18" height="12" rx="3" fill="#cfd8de"/></svg></div>
+        <span class="kind">Premium</span>
+        <h3>Full treatment + softener</h3>
+        <p class="price">$3,200–$5,500</p>
+        <p class="muted">Best for very hard water and private wells with iron, nitrate or PFAS.</p>
+        <ul><li>High-efficiency softener that uses less salt</li><li>Iron filter and RO sized to your lab results</li><li>Annual well test and service visit for year one</li></ul>
+        <a class="btn ghost" href="#book" data-svc="full">Book a test for full treatment</a>
+      </article>
+    </div>
+    <p class="sample">Already have a system? We service and repair every brand. Service visits start at $129.</p>
+  </div>
+</section>
+
+<section class="band how" id="how" aria-labelledby="hw">
+  <div class="wrap">
+    <h2 id="hw">From first call to soft, clean water in about a week</h2>
+    <p class="lede">No high-pressure kitchen-table pitch. You get numbers, a written plan, and time to think.</p>
+    <ol class="steps">
+      <li>
+        <div class="ico"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><rect x="24" y="6" width="16" height="44" rx="8" fill="#dfe6ea"/><rect x="24" y="28" width="16" height="22" rx="8" fill="#5ec2f2"/><rect x="21" y="4" width="22" height="8" rx="3" fill="#0e4c73"/><circle cx="48" cy="48" r="10" fill="#cf3b22"/><path d="M44 48l3 3 6-6" stroke="#fff" stroke-width="2.5" fill="none"/></svg></div>
+        <div><h3>Book a free test</h3><p>A technician tests hardness, iron, chlorine and dissolved solids at your kitchen tap in about 30 minutes. Well homes get a lab kit for nitrate and bacteria.</p><span class="when">Day 1</span></div>
+      </li>
+      <li>
+        <div class="ico"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="6" width="40" height="52" rx="4" fill="#fff" stroke="#0e4c73" stroke-width="3"/><path d="M20 20h24M20 30h24M20 40h14" stroke="#9fb3bf" stroke-width="3"/><text x="38" y="52" font-family="Archivo" font-weight="800" font-size="14" fill="#cf3b22">$</text></svg></div>
+        <div><h3>Get your custom plan</h3><p>Your results and one written plan with an exact installed price, emailed the same day. The price holds for 30 days. No follow-up calls unless you ask.</p><span class="when">Same day</span></div>
+      </li>
+      <li>
+        <div class="ico"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50l20-20" stroke="#0e4c73" stroke-width="8" stroke-linecap="round"/><path d="M38 12a12 12 0 0 0 14 14l-6 6-14-14z" fill="#33424d"/><circle cx="46" cy="18" r="4" fill="#f4efe3"/><path d="M8 58h48" stroke="#5ec2f2" stroke-width="4" stroke-linecap="round"/></svg></div>
+        <div><h3>Professional installation</h3><p>A half-day install by our own crew, never a subcontractor. We haul away the old unit, set everything up, and walk you through it before we leave.</p><span class="when">Usually within 7 days</span></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="proof" aria-labelledby="pr">
+  <div class="wrap">
+    <div class="proof-top">
+      <div>
+        <h2 id="pr">Hold us to it</h2>
+        <p class="lede">If your water doesn't test soft and clean within 60 days of install, we adjust it, swap parts or take the system back for a full refund of the equipment.</p>
+      </div>
+      <svg class="seal" viewBox="0 0 240 240" role="img" aria-label="60-day clean water guarantee">
+        <g fill="#cf3b22"><circle cx="120" cy="120" r="112"/></g>
+        <circle cx="120" cy="120" r="96" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 6"/>
+        <circle cx="120" cy="120" r="78" fill="#fff"/>
+        <path id="arc" d="M40 120a80 80 0 0 1 160 0" fill="none"/>
+        <text font-family="Inter" font-weight="600" font-size="15" fill="#fff" letter-spacing="1"><textPath href="#arc" startOffset="50%" text-anchor="middle">Osmosis guarantee</textPath></text>
+        <text x="120" y="122" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="58" fill="#0e4c73">60</text>
+        <text x="120" y="150" text-anchor="middle" font-family="Inter" font-weight="600" font-size="16" fill="#0e4c73">day clean water</text>
+        <text x="120" y="170" text-anchor="middle" font-family="Inter" font-weight="600" font-size="16" fill="#0e4c73">guarantee</text>
+      </svg>
+    </div>
+    <div class="trust">
+      <div><svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="4" fill="var(--panel)" stroke="var(--lake)" stroke-width="3"/><circle cx="18" cy="24" r="5" fill="var(--lake)"/><path d="M28 20h9M28 27h7" stroke="var(--lake)" stroke-width="3"/></svg><p><b>Licensed</b><span class="muted">Minnesota water conditioning contractor and installer licenses</span></p></div>
+      <div><svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l16 6v12c0 10-7 17-16 20-9-3-16-10-16-20V11z" fill="var(--panel)" stroke="var(--lake)" stroke-width="3"/><path d="M17 24l5 5 9-10" stroke="var(--lake)" stroke-width="3" fill="none"/></svg><p><b>Insured</b><span class="muted">General liability and workers' comp on every job</span></p></div>
+      <div><svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="20" r="13" fill="var(--panel)" stroke="var(--lake)" stroke-width="3"/><path d="M17 31l-4 13 11-5 11 5-4-13" fill="none" stroke="var(--lake)" stroke-width="3"/><path d="M19 20l4 4 7-7" stroke="var(--lake)" stroke-width="3" fill="none"/></svg><p><b>Certified</b><span class="muted">WQA-certified water specialists; NSF-certified equipment</span></p></div>
+    </div>
+    <div class="reviews">
+      <figure class="review" style="margin:0"><div class="top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><span class="tag">Sample</span></div><blockquote style="margin:0">The test took half an hour and the quote matched the price on the website. Install was done by lunch.</blockquote><cite>Homeowner, Lakeville · Whole-home filtration</cite></figure>
+      <figure class="review" style="margin:0"><div class="top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><span class="tag">Sample</span></div><blockquote style="margin:0">Our well tested high for nitrate. They explained the lab report line by line and put RO in that same week.</blockquote><cite>Homeowner, Eureka Township · Full treatment</cite></figure>
+      <figure class="review" style="margin:0"><div class="top"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><span class="tag">Sample</span></div><blockquote style="margin:0">They fixed a 12-year-old softener another company told us to replace. Honest people.</blockquote><cite>Homeowner, Burnsville · Service visit</cite></figure>
+    </div>
+    <p class="sample">Review cards and credentials above are layout samples. Replace them with real Google reviews, license numbers and certificate IDs before launch.</p>
+  </div>
+</section>
+
+<section class="band" id="about" aria-labelledby="ab" style="padding-top:0">
+  <div class="wrap about">
+    <div class="story">
+      <h2 id="ab">Why we started Osmosis</h2>
+      <p class="lede" style="margin-bottom:22px">Water treatment in the south metro had a pricing problem.</p>
+      <p>Ask three dealers to quote the same softener and you can hear $1,600 from one and more than $5,500 from the next, usually after a two-hour sales visit at your kitchen table. None of them post a price.</p>
+      <p>Osmosis is a Burnsville company built the other way around. We publish our prices, test your water for free, and put the results and one written plan in your hands. You decide on your own time.</p>
+      <p>We also do the work others skip. Rural Dakota and Scott county wells need more than a softener, and county testing keeps finding nitrate and PFAS in private wells. We test for both and treat what we find. When an old system of any brand acts up, we'll repair it before we try to replace it.</p>
+    </div>
+    <aside class="side" aria-label="Local water facts and service area">
+      <div class="stat"><b>11–15 grains</b><span class="muted">per gallon of hardness in Burnsville city water, rated very hard</span></div>
+      <div class="stat"><b>94 of 114</b><span class="muted">private wells tested by Dakota County had PFAS detected</span></div>
+      <div style="padding-top:16px"><b>Where we work</b>
+        <div class="chips"><span>Burnsville</span><span>Apple Valley</span><span>Lakeville</span><span>Eagan</span><span>Savage</span><span>Prior Lake</span><span>Rosemount</span><span>Farmington</span><span>Shakopee</span><span>Hastings</span><span>Rural townships</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="band book" id="book" aria-labelledby="bk">
+  <div class="wrap bookgrid">
+    <div class="contact">
+      <h2 id="bk">Book your free water test</h2>
+      <p class="lede">Takes about 30 minutes at your kitchen sink. We'll call within one business day to pick a time.</p>
+      <dl>
+        <div><dt>Call or text</dt><dd><a href="tel:+16125629419" class="nw">(612) 562-9419</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:dakotaosmosis@gmail.com">dakotaosmosis@gmail.com</a></dd></div>
+        <div><dt>Hours</dt><dd>Mon–Fri 7:30–6:00, Sat 8:00–1:00</dd></div>
+        <div><dt>Based in</dt><dd>Burnsville, MN</dd></div>
+      </dl>
+    </div>
+    <div>
+      <form id="f" novalidate>
+        <div class="row">
+          <div><label for="name">Name <i>*</i></label><input id="name" name="name" autocomplete="name" required><div class="err" id="name-e"></div></div>
+          <div><label for="phone">Phone <i>*</i></label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required><div class="err" id="phone-e"></div></div>
+        </div>
+        <div><label for="email">Email <i>*</i></label><input id="email" name="email" type="email" autocomplete="email" required><div class="err" id="email-e"></div></div>
+        <div><label for="address">Street address and city <i>*</i></label><input id="address" name="address" autocomplete="street-address" required><div class="err" id="address-e"></div></div>
+        <div><label for="service">I'm interested in <i>*</i></label>
+          <select id="service" name="service" required>
+            <option value="">Choose one</option>
+            <option value="ro">Basic: under-sink RO ($450–$900)</option>
+            <option value="whole">Standard: whole-home filtration ($1,400–$2,800)</option>
+            <option value="full">Premium: full treatment + softener ($3,200–$5,500)</option>
+            <option value="well">Private well testing and treatment</option>
+            <option value="service">Service or repair on my current system</option>
+            <option value="unsure">Not sure yet, just test my water</option>
+          </select><div class="err" id="service-e"></div></div>
+        <fieldset><legend style="font-weight:600;font-size:15px;margin-bottom:6px">Your water comes from</legend>
+          <div class="radios"><label><input type="radio" name="source" id="src-city" value="City water" checked>City water</label><label><input type="radio" name="source" id="src-well" value="Private well">Private well</label><label><input type="radio" name="source" id="src-unsure" value="Not sure">Not sure</label></div>
+        </fieldset>
+        <div><label for="msg">Anything we should know? (optional)</label><textarea id="msg" name="msg" placeholder="Orange stains, salt bridging, a lab result you got from the county..."></textarea></div>
+        <button class="btn primary" type="submit">Book my free water test</button>
+        <p class="note">We use your details only to schedule your test. No spam, no sales calls.</p>
+      </form>
+      <div class="done" id="done" role="status" tabindex="-1">
+        <h3 id="done-h">Thanks, your request is in</h3>
+        <dl id="sum"></dl>
+        <p class="note" id="done-note">We'll call within one business day to set a time. Questions sooner? Call or text (612) 562-9419.</p>
+        <button class="btn ghost" type="button" id="again" style="margin-top:16px">Edit request</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Osmosis</b><br>Residential water treatment<br>Burnsville, MN · Osmosis LLC</div>
+    <div><b>Contact</b><br><a href="tel:+16125629419">(612) 562-9419</a><br><a href="mailto:dakotaosmosis@gmail.com">dakotaosmosis@gmail.com</a><br><a href="http://osmosisfiltration.com/">osmosisfiltration.com</a></div>
+    <div><b>Services</b><br>Reverse osmosis · Whole-home filtration<br>Softeners · Well water treatment · Repairs</div>
+    <div>© 2026 Osmosis LLC</div>
+  </div>
+</footer>
+
+<script>
+{
+  const head = document.querySelector('header');
+  const menu = document.getElementById('menu');
+  menu.addEventListener('click', () => {
+    const open = head.classList.toggle('open');
+    menu.setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () => { head.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }));
+
+  const f = document.getElementById('f');
+  const done = document.getElementById('done');
+  const svc = document.getElementById('service');
+  document.querySelectorAll('[data-svc]').forEach(b => b.addEventListener('click', () => { svc.value = b.dataset.svc; save(); }));
+
+  const KEY = 'osmosis-booking-draft';
+  const fields = ['name', 'phone', 'email', 'address', 'service', 'msg'];
+  function save() {
+    try {
+      const d = {};
+      fields.forEach(id => { d[id] = document.getElementById(id).value; });
+      d.source = (f.querySelector('input[name=source]:checked') || {}).value;
+      localStorage.setItem(KEY, JSON.stringify(d));
+    } catch (e) {}
+  }
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (d) {
+      fields.forEach(id => { if (d[id]) document.getElementById(id).value = d[id]; });
+      const r = f.querySelector('input[name=source][value="' + d.source + '"]');
+      if (r) r.checked = true;
+    }
+  } catch (e) {}
+  f.addEventListener('input', save);
+
+  const rules = {
+    name: v => v.trim().length >= 2 || 'Please enter your name.',
+    phone: v => v.replace(/\D/g, '').length >= 10 || 'Please enter a 10-digit phone number.',
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Please enter a valid email.',
+    address: v => v.trim().length >= 6 || 'Please enter your street address and city.',
+    service: v => v !== '' || 'Please choose a service.'
+  };
+  function check(id) {
+    const el = document.getElementById(id);
+    const r = rules[id](el.value);
+    const msg = r === true ? '' : r;
+    document.getElementById(id + '-e').textContent = msg;
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    if (msg) el.setAttribute('aria-describedby', id + '-e'); else el.removeAttribute('aria-describedby');
+    return !msg;
+  }
+  Object.keys(rules).forEach(id => document.getElementById(id).addEventListener('blur', () => check(id)));
+
+  const phone = document.getElementById('phone');
+  phone.addEventListener('blur', () => {
+    const d = phone.value.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
+    if (d.length === 10) phone.value = '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  });
+
+  const val = id => document.getElementById(id).value.trim();
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = Object.keys(rules).filter(id => !check(id));
+    if (bad.length) { document.getElementById(bad[0]).focus(); return; }
+    const rows = [
+      ['Name', val('name')], ['Phone', phone.value], ['Email', val('email')], ['Address', val('address')],
+      ['Service', svc.options[svc.selectedIndex].text], ['Water source', (f.querySelector('input[name=source]:checked') || {}).value || ''],
+      ['Notes', val('msg') || 'None']
+    ];
+    document.getElementById('sum').innerHTML = rows.map(r => '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>').join('');
+    const btn = f.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    const data = { _subject: 'New water test request: ' + val('name'), _template: 'table', _captcha: 'false' };
+    rows.forEach(r => { data[r[0]] = r[1]; });
+    fetch('https://formsubmit.co/ajax/dakotaosmosis@gmail.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+      .then(res => { if (!res.ok) throw new Error(res.status); return res.json(); })
+      .then(() => { try { localStorage.removeItem(KEY); } catch (e) {} })
+      .catch(() => {
+        document.getElementById('done-h').textContent = 'We could not send your request';
+        document.getElementById('done-note').textContent = 'Please call or text (612) 562-9419, or email dakotaosmosis@gmail.com, and we will book your test.';
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Book my free water test';
+        f.style.display = 'none';
+        done.classList.add('show');
+        done.focus();
+      });
+  });
+  document.getElementById('again').addEventListener('click', () => {
+    done.classList.remove('show');
+    document.getElementById('done-h').textContent = 'Thanks, your request is in';
+    document.getElementById('done-note').textContent = "We'll call within one business day to set a time. Questions sooner? Call or text (612) 562-9419.";
+    f.style.display = '';
+    document.getElementById('name').focus();
+  });
+}
+</script>
+</body>
+</html>
